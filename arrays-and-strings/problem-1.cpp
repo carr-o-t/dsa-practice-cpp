@@ -19,6 +19,7 @@ public:
 // APPROACH-2: Use a map to track the frequency of each element
 // Time Complexity: O(n), where n is the number of elements in the vector
 // Space Complexity: O(n), for storing the frequency of each element in the map
+// Note: This approach is not recommeded for this problem since we only need to check for duplicates, not their frequencies.
 class Solution2 {
 public:
     bool containsDuplicate(std::vector<int>& nums) {
