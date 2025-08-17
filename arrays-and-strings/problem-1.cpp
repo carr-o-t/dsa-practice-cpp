@@ -1,5 +1,6 @@
 #include <vector>
 #include <set>
+#include <map>
 #include<iostream>
 
 
@@ -11,6 +12,26 @@ public:
     bool containsDuplicate(std::vector<int>& nums) {
         std::set<int> uniqueNums(nums.begin(), nums.end());
         return uniqueNums.size() != nums.size();
+    }
+};
+
+// APPROACH-2: Use a map to track the frequency of each element
+// Time Complexity: O(n), where n is the number of elements in the vector
+// Space Complexity: O(n), for storing the frequency of each element in the map
+class Solution2 {
+public:
+    bool containsDuplicate(std::vector<int>& nums) {
+        std::map<int, int> freqMap;
+
+        
+        for(int i = 0; i<nums.size();i++){
+            if(freqMap.contains(nums[i])){
+                return true;
+            } 
+            freqMap.insert({nums[i], 1});
+        }
+
+        return false;
     }
 };
 
