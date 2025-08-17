@@ -54,6 +54,67 @@ public:
         return s == t;
     }
 
+/*
+    Approach: Frequency Map
+    ---------------------------------------------
+    This approach checks if two strings are anagrams by comparing 
+    the frequency of each character.
+
+    Steps:
+    1. If the lengths differ, they cannot be anagrams.
+    2. Use a fixed-size frequency array of length 26, since the 
+    problem assumes only lowercase English letters ('a' to 'z').
+    3. For each character in `s`, increment its frequency.
+    4. For each character in `t`, decrement its frequency.
+    5. Finally, if all frequency values are zero, both strings have 
+    identical characters in equal counts → they are anagrams.
+    Otherwise, if any nonzero count remains, they are not anagrams.
+
+    Time Complexity: O(n), where n = length of the strings
+    → One pass over `s` and one pass over `t`.
+    Space Complexity: O(1) 
+    → Fixed-size array of 26 integers regardless of input size.
+
+    NOTE: This implementation only works for lowercase English letters.
+*/
+
+
+    bool isAnagramUsingFreqMap(std::string s, std::string t) {
+        if(s.size() != t.size()) return false;
+
+        std::vector<int> freq(26, 0); // only for lowercase English letters
+        
+        for (char c : s) freq[c - 'a']++;
+        for (char c : t) freq[c - 'a']--;
+        
+        for (int count : freq) {
+            if (count != 0) return false;
+        }
+
+        return true;
+    }
+
+    /*
+    Function to check if two strings are anagrams using a frequency map
+    Time Complexity: O(n), where n = length of the strings
+    Space Complexity: O(k), where k = number of distinct characters in the string
+    Works for all ASCII/Unicode characters (if char is replaced by wchar_t or std::wstring)
+    */
+
+    bool isAnagram(std::string s, std::string t) {
+        if (s.size() != t.size()) return false;
+
+        std::unordered_map<char, int> freqMap;
+
+        for (char c : s) freqMap[c]++;
+        for (char c : t) freqMap[c]--;
+
+        for (const auto& pair : freqMap) {
+            if (pair.second != 0) return false;
+        }
+
+        return true;
+    }
 
 };
 
