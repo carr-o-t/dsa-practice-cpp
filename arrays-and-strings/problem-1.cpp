@@ -3,6 +3,7 @@
 #include <map>
 #include<iostream>
 #include <unordered_set>    
+#include <algorithm> // for std::sort
 
 
 // APPROACH-1: Create a set from the vector and compare sizes
@@ -55,6 +56,22 @@ public:
         return false;
     }
 };
+
+
+// APPROACH-4: Sort the vector and check for adjacent duplicates
+// Time Complexity: O(n log n), due to sorting
+// Space Complexity: O(1) if sorting in place, O(n) if using additional space for sorted array
+class Solution4 {
+public:
+    bool containsDuplicate(std::vector<int>& nums) {
+        std::sort(nums.begin(), nums.end());
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums[i] == nums[i-1]) return true;
+        }
+        return false;
+    }
+};
+
 
 int main() {
     Solution solution;
