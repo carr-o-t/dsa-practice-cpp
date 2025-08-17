@@ -2,6 +2,7 @@
 #include <set>
 #include <map>
 #include<iostream>
+#include <unordered_set>    
 
 
 // APPROACH-1: Create a set from the vector and compare sizes
@@ -31,6 +32,25 @@ public:
             freqMap.insert({nums[i], 1});
         }
 
+        return false;
+    }
+};
+
+
+// APPROACH-3: Use an unordered_set for O(1) average time complexity for insertions and lookups
+// Time Complexity: O(n), where n is the number of elements in the vector
+// Space Complexity: O(n), for storing unique elements in the unordered_set
+class Solution3 {
+public:
+    bool containsDuplicate(std::vector<int>& nums) {
+        std::unordered_set<int> visited; // O(1) avg insert & lookup
+        
+        for (int num : nums) {
+            if (!visited.insert(num).second) { 
+                return true;
+            }
+        }
+        
         return false;
     }
 };
