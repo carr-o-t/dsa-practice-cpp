@@ -45,6 +45,7 @@ public:
     1. For each string, sort the characters and use the sorted string as a key.
     2. Store the original strings in a map where the key is the sorted string.
     3. Return the values of the map as groups of anagrams.
+    4. works for only lowercase English letters.
 
     Time Complexity: O(n * k log k), where n = number of strings, k = average length of strings
     Space Complexity: O(n * k) for storing the grouped anagrams
@@ -73,6 +74,8 @@ public:
     1. For each string, count the frequency of each character.
     2. Use the frequency count as a key in a map.
     3. Store the original strings in a vector corresponding to each frequency key.
+    4. Return the values of the map as groups of anagrams.
+    5. This works for all characters, not just lowercase English letters.
 
     Time Complexity: O(n * k), where n = number of strings, k = average length of strings
     Space Complexity: O(n * k) for storing the grouped anagrams
